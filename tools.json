@@ -1,0 +1,35 @@
+{
+  "catalog": "palimnote-tools",
+  "owner": "hyderhusainarastu",
+  "groups": [
+    "Agent safety",
+    "Agent verification",
+    "LLM and local models",
+    "MCP",
+    "Research and citations",
+    "Docs and publishing",
+    "CI and databases",
+    "Secrets"
+  ],
+  "tools": [
+    {"name": "ai-coding-agent-guardrail-hooks", "repo": "ai-coding-agent-guardrail-hooks", "group": "Agent safety", "what": "Guardrail CLI, Claude Code hook and git hooks that block .env reads, out-of-root writes and --no-verify. Advisory, not a sandbox.", "language": "Python", "requirements": "Python 3.10+, git", "works_with": "Any shell or git; Claude Code hook"},
+    {"name": "release-privacy-scanner", "repo": "release-privacy-scanner", "group": "Agent safety", "what": "Scans a repo, its history and release archives for local paths, identifiers, emails and secret-shaped strings before publishing.", "language": "Python", "requirements": "Python 3.10+, git", "works_with": "Any shell, CI, pre-commit; agent skill"},
+    {"name": "agent-report-evidence-gate", "repo": "agent-report-evidence-gate", "group": "Agent verification", "what": "Checks an AI agent's done report for evidence completeness: cited files exist, claims have evidence, commands, hashes and commits re-verify.", "language": "Python", "requirements": "Python 3.10+", "works_with": "Any shell, CI; agent skill"},
+    {"name": "local-first-llm-router", "repo": "local-first-llm-router", "group": "LLM and local models", "what": "Policy layer that tries a script, then a local model, and escalates to a cloud model only when checks fail and the privacy tier allows it.", "language": "Python", "requirements": "Python 3.10+", "works_with": "Python library; Ollama, llama.cpp or any OpenAI-compatible server"},
+    {"name": "ollama-memory-governor", "repo": "ollama-memory-governor", "group": "LLM and local models", "what": "Keeps free RAM above a floor with several Ollama models: pins the primary, unloads others by priority, avoids the num_ctx reload trap.", "language": "Python", "requirements": "Python 3.10+, macOS or Linux, Ollama", "works_with": "Any shell; CLI or daemon"},
+    {"name": "safe-mcp-server-template", "repo": "safe-mcp-server-template", "group": "MCP", "what": "MCP server template that treats tool output as untrusted: closed tool list, fenced output, size caps, rate limits, confirm step.", "language": "Python", "requirements": "Python 3.10+, mcp SDK", "works_with": "MCP clients over stdio or HTTP"},
+    {"name": "hallucinated-citation-checker", "repo": "hallucinated-citation-checker", "group": "Research and citations", "what": "Checks every BibTeX entry against Crossref, OpenAlex, arXiv, Open Library and doi.org and writes a CSV verdict per key. Bibliography level.", "language": "Python", "requirements": "Python 3.10+, network", "works_with": "Any shell; agent skill"},
+    {"name": "scholarly-citation-resolver", "repo": "scholarly-citation-resolver", "group": "Research and citations", "what": "Resolves a messy free-text citation to verified metadata from six open sources and rejects matches that do not fit. Free text to metadata.", "language": "TypeScript", "requirements": "Node 20+, network", "works_with": "Any shell; Node or TypeScript library"},
+    {"name": "pandoc-table-width-filter", "repo": "pandoc-table-width-filter", "group": "Docs and publishing", "what": "Pandoc Lua filter that sizes pipe-table columns by content instead of separator dashes, so prose columns stop overflowing.", "language": "Lua", "requirements": "pandoc", "works_with": "Pandoc CLI"},
+    {"name": "pandoc-pdf-render-verify-kit", "repo": "pandoc-pdf-render-verify-kit", "group": "Docs and publishing", "what": "Renders Markdown to PDF with pandoc and LaTeX, then verifies page count, text overlap and hbox warnings, not just exit code 0.", "language": "Shell, Python", "requirements": "pandoc, LaTeX engine, Python 3", "works_with": "Any shell"},
+    {"name": "project-status-page-generator", "repo": "project-status-page-generator", "group": "Docs and publishing", "what": "Renders a phases-and-status JSON file into a static HTML status page; --check fails CI when the page is stale.", "language": "Node.js", "requirements": "Node, no dependencies", "works_with": "Any shell, CI"},
+    {"name": "migration-ledger-preflight-gate", "repo": "migration-ledger-preflight-gate", "group": "CI and databases", "what": "Pre-push check that hashes SQL migrations and fails if any are unapplied or edited after being applied to the database ledger.", "language": "Node.js", "requirements": "Node", "works_with": "Any shell, git pre-push hook"},
+    {"name": "pnpm-monorepo-ci-template", "repo": "pnpm-monorepo-ci-template", "group": "CI and databases", "what": "GitHub Actions workflow for pnpm monorepos covering setup ordering, a pgvector Postgres service and a CI-safe E2E split.", "language": "YAML", "requirements": "GitHub Actions", "works_with": "GitHub Actions; any assistant can adapt it"},
+    {"name": "dotenv-secret-prompt", "repo": "dotenv-secret-prompt", "group": "Secrets", "what": "zsh script that writes secrets into .env with hidden input, a git-ignore guard, atomic writes and .env.example key discovery.", "language": "zsh", "requirements": "zsh", "works_with": "Any terminal"}
+  ],
+  "also_published": [
+    {"name": "multi-agent-orchestration-playbook", "repo": "multi-agent-orchestration-playbook", "catalog": "palimnote-agent-patterns", "what": "Twelve rules for running teams of AI agents, an AGENTS.md template and small tested helper scripts."},
+    {"name": "deep-research-skill", "repo": "deep-research-skill", "catalog": "palimnote-skills", "what": "Agent skill for auditable research: saturation stop rule, verification levels and bounded negative findings."},
+    {"name": "cross-model-second-opinion", "repo": "cross-model-second-opinion", "catalog": "palimnote-skills", "what": "Agent skill for a budgeted, read-only second opinion from a different AI model."}
+  ]
+}
